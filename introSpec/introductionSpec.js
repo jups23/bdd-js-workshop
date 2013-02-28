@@ -13,29 +13,29 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 		it("can be an object literal", function(){
 			var literal = {name: 'John', surname: 'Connor'};
 
-			expect(literal.name).toEqual('...');
+			expect(literal.name).toEqual('John');
 		});
 
 		it("can be a constructor with methods inside", function(){
 			var cat = new BDD.Cat();
 
 			expect(cat.isPurring()).toBeFalsy();
-		});		
+		});
 
 		it("can have the methods in the prototype", function(){
 			var balance = 20;
 			var account = new BDD.Account(balance);
 
 			expect(account.balance()).toEqual(0);
-		});				
+		});
 
-		it("can iterate over objet properties", function(){
+		it("can iterate over object properties", function(){
 			var literal = {name: 'John', age: 28};
 			var propertyNames = [];
 			for(var propName in literal)
 				propertyNames.push(propName);
 
-			expect(propertyNames.length).toEqual(100);
+			expect(propertyNames.length).toEqual(2);
 		});
 
 		it("can iterate over an array, which is different way of iteration", function(){
@@ -44,7 +44,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 			for (var i = 0, len = sequence.length; i < len; i++)
 				sum += sequence[i];
 
-			expect(sum).toEqual(20);
+			expect(sum).toEqual(16);
 		});
 	});
 
@@ -162,7 +162,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 
 			expect(window.kilos).toEqual(11);
 			expect(cat.kilos).toEqual(154);
-		});		
+		});
 
 		it("can be bound explicitly with CALL and APPLY", function(){
 			var feed = cat.feed;
@@ -170,7 +170,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 			feed.apply(cat);
 
 			expect(cat.kilos).toEqual(20);
-		});		
+		});
 
 		it("can be bound in modern browsers with BIND", function(){
 			var feed = cat.feed;
@@ -179,7 +179,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 			bound();
 
 			expect(cat.kilos).toEqual(12);
-		});		
+		});
 
 		it("works different when function is attached to other object", function(){
 			var dog = new BDD.Dog();
@@ -189,7 +189,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 			dog.feed();
 			expect(dog.kilos).toEqual(511);
 			expect(cat.kilos).toEqual(14);
-		});				
+		});
 
 		it("can be handled using the SELF trick", function(){
 			var energy = 200;
@@ -198,7 +198,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 			lion.hunt();
 
 			expect(lion.energy).toEqual(4);
-		});				
+		});
 
 		it("interprest the THIS when the function is executed", function(){
 			var energy = 200;
@@ -210,11 +210,11 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 			lion.hunt();
 
 			expect(lion.energy).toEqual(1200);
-		});						
+		});
 	});
 
 	describe("event driven development", function(){
-		// PLEASE READ THIS POST. It contains the theory: 
+		// PLEASE READ THIS POST. It contains the theory:
 		// http://www.carlosble.com/2013/02/event-oriented-programming-with-javascript/
 
 		it("uses the DOM level 0 traditional model (one2one)", function(){
@@ -231,7 +231,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 		it("implements the observer pattern (one2many)", function(){
 			function Publisher(){
 				this.addObserver = function(observerCallback){
-					// TODO: implement this 
+					// TODO: implement this
 				};
 				this.informAllObservers = function(){
 					// TODO: implement this
@@ -291,7 +291,7 @@ describe("the test doubles", function(){
 		lion.hunt();
 
 		expect(lion.onHunting).toHaveBeenCalled();
-	});	
+	});
 
 	it("stubs out a method", function(){
 		var energy = 100
@@ -311,7 +311,7 @@ describe("the test doubles", function(){
 			return false;
 		};
 		var tarita = new BDD.Cat();
-		
+
 		function Environtment(cat1, cat2){
 			this.isQuited = function(){
 			   return cat1.isPurring() && cat2.isPurring();
@@ -320,10 +320,10 @@ describe("the test doubles", function(){
 		var environtment = new Environtment(max, tarita);
 
 		expect(environtment.isQuited()).toBe('...');
-	});	
+	});
 });
 
-// This exercise is not necessary to attend the tutorial, it's an bonus 
+// This exercise is not necessary to attend the tutorial, it's an bonus
 // for those who want to practice more TDD in JavaScript
 // ******** The Decorator pattern Kata *******************
 /*
@@ -364,7 +364,7 @@ describe("the decorator pattern using a wrapper", function(){
         var decorator = new Decorator(original);
         spyOn(decorator, "onWorking");
         decorator.initialize();
-   
+
         original.work();
 
         expect(decorator.onWorking).toHaveBeenCalled();

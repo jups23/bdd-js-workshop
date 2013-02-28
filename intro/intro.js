@@ -39,7 +39,7 @@ var BDD = BDD || {};
 			this.onHunting(); // fire event
 		};
 		this.onHunting = function(){ /* event */ }
-	}	
+	}
 
 	////////////////////////////////
 
@@ -67,6 +67,9 @@ var BDD = BDD || {};
 
 	function Account(balance){
 		this.initialBalance = balance;
+		this.balance = function() {
+			return 0;
+		};
 	}
 	Account.prototype.balance = function(){
 		return this.initialBalance;
