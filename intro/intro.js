@@ -7,7 +7,7 @@ var BDD = BDD || {};
 	function Cat(){
 		this.kilos = 1;
 		this.feed = function(){
-			this.kilos++;
+			this.kilos+=10;
 		};
 
 		this.isPurring = function(){

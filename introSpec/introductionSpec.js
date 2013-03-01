@@ -156,8 +156,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 		it("works as expected in other languages", function(){
 			cat.feed();
 			cat.feed();
-
-			expect(cat.kilos).toEqual(30);
+			expect(cat.kilos).toEqual(21);
 		});
 
 		it("works different on dettached functions", function(){
@@ -166,8 +165,8 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 
 			feed();
 
-			expect(window.kilos).toEqual(11);
-			expect(cat.kilos).toEqual(154);
+			expect(window.kilos).toEqual(20);
+			expect(cat.kilos).toEqual(1);
 		});
 
 		it("can be bound explicitly with CALL and APPLY", function(){
@@ -175,7 +174,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 
 			feed.apply(cat);
 
-			expect(cat.kilos).toEqual(20);
+			expect(cat.kilos).toEqual(11);
 		});
 
 		it("can be bound in modern browsers with BIND", function(){
@@ -184,21 +183,21 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 
 			bound();
 
-			expect(cat.kilos).toEqual(12);
+			expect(cat.kilos).toEqual(11);
 		});
 
-		it("works different when function is attached to other object", function(){
+		it("works differently when function is attached to other object", function(){
 			var dog = new BDD.Dog();
-			dog.kilos = 10;
+			dog.kilos = 501;
 			dog.feed = cat.feed;
 
 			dog.feed();
 			expect(dog.kilos).toEqual(511);
-			expect(cat.kilos).toEqual(14);
+			expect(cat.kilos).toEqual(1);
 		});
 
 		it("can be handled using the SELF trick", function(){
-			var energy = 200;
+			var energy = 19;
 			var lion = new BDD.Lion(energy);
 
 			lion.hunt();
@@ -206,12 +205,12 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 			expect(lion.energy).toEqual(4);
 		});
 
-		it("interprest the THIS when the function is executed", function(){
+		it("interprets the THIS when the function is executed", function(){
 			var energy = 200;
 			var lion = new BDD.Lion();
 
 			lion.hunt = function(){
-				this.energy = 4000;
+				this.energy = 1200;
 			};
 			lion.hunt();
 
