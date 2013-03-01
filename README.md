@@ -1,4 +1,4 @@
-This is the skeleton project for my BDD workshop for RIAs development with JavaScript
+This is the skeleton project for the [BDD workshop for RIAs development with JavaScript](https://bitbucket.org/carlosble/bddjsworkshop) by [Carlos Ble](https://bitbucket.org/carlosble).
 
 For more information about the workshop visit http://www.carlosble.com/2013/01/workshop-bdd-for-ria-with-javascript/
 
