@@ -19,7 +19,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 		it("can be a constructor with methods inside", function(){
 			var cat = new BDD.Cat();
 
-			expect(cat.isPurring()).toBeFalsy();
+			expect(cat.isPurring()).toBe(true);
 		});
 
 		it("can have the methods in the prototype", function(){

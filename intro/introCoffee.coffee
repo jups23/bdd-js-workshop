@@ -1,11 +1,7 @@
 class Dog
 	constructor : (@color) ->
 
-class Cat
-	constructor : (@color) ->
 
-	isPurring : ->
-		false
 
 if (typeof(window) != 'undefined')
    window.BDD or= {}
