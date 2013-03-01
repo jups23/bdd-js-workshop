@@ -334,12 +334,33 @@ describe("the test doubles", function(){
 // This exercise is not necessary to attend the tutorial, it's an bonus
 // for those who want to practice more TDD in JavaScript
 // ******** The Decorator pattern Kata *******************
-/*
+
 describe("the decorator pattern using a wrapper", function(){
     function Decorator(innerInstance){
         this.initialize = function(){
 
         };
+
+        this.__proto__ = innerInstance;
+
+
+        // Alternative 1: True wrapping
+
+        // this.work = function(){
+        // 	innerInstance.work();
+        // }
+
+        // this.onWorking = function(){
+        // 	innerInstance.onWorking();
+        // };
+
+        // Alternative 2: traverse attributes
+
+        // for (attr in innerInstance) {
+        // 	if(innerInstance.hasOwnProperty(attr)) {
+        // 		this[attr] = innerInstance[attr];
+        // 	}
+        // }
     }
 
     function Original(collaboratorInstance){
@@ -373,9 +394,8 @@ describe("the decorator pattern using a wrapper", function(){
         spyOn(decorator, "onWorking");
         decorator.initialize();
 
-        original.work();
+        decorator.work();
 
         expect(decorator.onWorking).toHaveBeenCalled();
     });
 });
-*/
