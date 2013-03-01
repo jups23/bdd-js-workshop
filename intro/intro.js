@@ -31,12 +31,12 @@ var BDD = BDD || {};
 		};
 		this.playWithFriend = function(friend){
 			if (friend.isPurring())
-				self.energy += 10;
+				self.energy += 15;
 		};
 		this.hunt = function(){ // public method
 			run();
 			attack();
-			this.onHunting(); // fire event
+			this.onHunting('whatever'); // fire event
 		};
 		this.onHunting = function(){ /* event */ }
 	}

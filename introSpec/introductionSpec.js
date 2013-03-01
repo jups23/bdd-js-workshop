@@ -231,16 +231,19 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 
 			lion.hunt();
 
-			expect(called).toBe('...');
+			expect(called).toBe(true);
 		});
 
 		it("implements the observer pattern (one2many)", function(){
 			function Publisher(){
+				var observers = []
 				this.addObserver = function(observerCallback){
-					// TODO: implement this
+					observers.push(observerCallback);
 				};
 				this.informAllObservers = function(){
-					// TODO: implement this
+					for(var i = 0; i<observers.length; i++){
+						observers[i]();
+					}
 				};
 			}
 
@@ -269,7 +272,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 
 			eventBus.emit("someEvent", {someNumber: 10});
 
-			expect(eventWasFired).toBeFalsy();
+			expect(eventWasFired).toBeTruthy();
 		});
 	});
 });
@@ -285,7 +288,7 @@ describe("the test doubles", function(){
 
 		lion.hunt();
 
-		expect(lion.onHunting).toBeFalsy();
+		expect(lion.onHunting).toHaveBeenCalled();
 	});
 
 	it("spies and stubs out the method", function(){
@@ -318,14 +321,14 @@ describe("the test doubles", function(){
 		};
 		var tarita = new BDD.Cat();
 
-		function Environtment(cat1, cat2){
-			this.isQuited = function(){
+		function Environment(cat1, cat2){
+			this.isQuitted = function(){
 			   return cat1.isPurring() && cat2.isPurring();
 		    };
 		};
-		var environtment = new Environtment(max, tarita);
+		var environment = new Environment(max, tarita);
 
-		expect(environtment.isQuited()).toBe('...');
+		expect(environment.isQuitted()).toBe(false);
 	});
 });
 
