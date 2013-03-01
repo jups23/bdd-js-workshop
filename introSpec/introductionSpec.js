@@ -62,7 +62,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 			}
 
 			var nested = closure();
-			expect(nested().theValue).toEqual(1);
+			expect(nested().theValue).toEqual(5);
 		});
 
 		it("doesnt have a private scope inside blocks", function(){
@@ -71,7 +71,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 				j += i;
 			};
 
-			expect(i).toEqual(9);
+			expect(i).toEqual(5);
 			expect(j).toEqual(10);
 		});
 
@@ -86,8 +86,8 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 				return functions;
 			}
 
-			expect(generate()[0]()).toEqual(1);
-			expect(generate()[1]()).toEqual(1);
+			expect(generate()[0]()).toEqual(5);
+			expect(generate()[1]()).toEqual(5);
 		});
 
 		it("can create methods dynamically on an object instance", function(){
@@ -97,7 +97,7 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 				cat[[methodNames[i]]] = function(){ return 'it works';};
 			};
 
-			expect(cat.meow()).toEqual('...');
+			expect(cat.meow()).toEqual('it works');
 		});
 
 		it("can have a static method", function(){
@@ -108,8 +108,8 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 
 			var objInstance = new SomeObject();
 
-			expect(objInstance.someStaticMethod).toBe('...');
-			expect(SomeObject.someStaticMethod()).toBe();
+			expect(objInstance.someStaticMethod).toBe(undefined);
+			expect(SomeObject.someStaticMethod()).toBe(5);
 		});
 
 		it("can create methods in the object definition", function(){
@@ -122,12 +122,18 @@ describe("the tricky yet powerful parts of JavaScript", function(){
 			}
 			var objInstance = new SomeObject();
 
-			expect(objInstance.method1()).toEqual('...');
+			expect(objInstance.method1()).toEqual('it works');
 		});
 
 		it("adds methods dynamically", function(){
 			function addMethods(objInstance, numberOfMethods){
 				// AS EN EXERCISE, IMPLEMENT THIS METHOD TO MAKE THE TEST PASS
+				for (var i = numberOfMethods - 1; i >= 0; i--) {
+					(function() {
+						var j = i;
+						objInstance['dynamicMethod'+j] = function() {return j}
+					})();
+				};
 			};
 
 			var cat = new BDD.Cat();
